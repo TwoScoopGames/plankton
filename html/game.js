@@ -2,7 +2,8 @@ var canvas = document.getElementById("canvas");
 
 var manifest = {
 	"images": {
-
+		"sound-off": "images/sound-off.png",
+		"sound-on": "images/sound-on.png"
 
 	},
 	"sounds": {
@@ -116,20 +117,23 @@ function drawIntroOverlay(context, scene) {
 	scene.camera.drawAbsolute(context, function() {
 
 
-		context.fillStyle = "#000";
+		context.fillStyle = "#BFBFD5";
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
-		context.fillStyle = "#fff";
+		context.fillStyle = "#6B6563";
 		context.font = "100px lato";
 		centerText(context, "plankton", 0, 600);
 
 
-		context.fillStyle = "#fff";
+		context.font = "60px lato";
+		centerText(context, "tap to continue", 0, 850);
+
+
 		context.font = "28px lato";
 		centerText(context, "2014 Two Scoop Games ", 0, canvas.height - 60);
 
-		var adPlaceholder = game.images.get("ad-placeholder");
-		context.drawImage(adPlaceholder, 0, 0);
+		// var adPlaceholder = game.images.get("ad-placeholder");
+		// context.drawImage(adPlaceholder, 0, 0);
 
 
 		if (muteSounds) {
@@ -137,7 +141,7 @@ function drawIntroOverlay(context, scene) {
 		} else {
 			var soundSwitch = game.images.get("sound-on");
 		}
-		context.drawImage(soundSwitch, (canvas.width - soundSwitch.width), 100);
+		context.drawImage(soundSwitch, (canvas.width - soundSwitch.width), 0);
 	});
 }
 
@@ -236,7 +240,7 @@ game.scenes.add("main", new Splat.Scene(canvas, function() {
 		}
 
 		if (waitingToStart) {
-			var soundSwitch = new Splat.Entity((canvas.width - 115), 100, 115, 109);
+			var soundSwitch = new Splat.Entity((canvas.width - 115), 0, 115, 109);
 			if (isInside(soundSwitch, game.mouse.x, game.mouse.y)) {
 
 				if (game.mouse.consumePressed(0)) {
@@ -274,10 +278,9 @@ game.scenes.add("main", new Splat.Scene(canvas, function() {
 		if (this.timers.fadeToBlack.running) {
 			return;
 		}
-	},
-	function draw(context) {
+	}, function draw(context) {
 
-		context.fillStyle = "#000";
+		context.fillStyle = "#CCB4C4";
 		context.fillRect(0, 0, canvas.width, canvas.height);
 
 
